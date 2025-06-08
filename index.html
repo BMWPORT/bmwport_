@@ -1,1 +1,812 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GameVerse - Your ultimate gaming portal with the latest news, game downloads, and community features">
+    <title>GameVerse | Download Games & Latest Gaming News</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00a8ff;
+            --primary-dark: #0088cc;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #ffffff;
+            --gray: #aaaaaa;
+            --dark-gray: #2d2d2d;
+            --discord: #5865F2;
+            --tiktok: #000000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--darker);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-bar input {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: none;
+            background-color: var(--dark-gray);
+            color: var(--light);
+            min-width: 200px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-bar input:focus {
+            outline: 2px solid var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('assets/hero-bg.webp') no-repeat center center/cover;
+            height: 70vh;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--gray);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            font-family: 'Oxanium', sans-serif;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--light);
+            border: 2px solid var(--light);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Games Section */
+        .section {
+            padding: 4rem 5%;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .game-card {
+            background-color: var(--darker);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        
+        .game-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .game-info {
+            padding: 1.5rem;
+        }
+        
+        .game-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .game-info .btn {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        /* News Section */
+        .news-section {
+            background-color: var(--darker);
+            padding: 4rem 5%;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .news-card {
+            background-color: var(--dark);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-date {
+            color: var(--primary);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .news-date::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+        
+        .news-content h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            line-height: 1.4;
+        }
+        
+        .news-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Social Section */
+        .social-section {
+            text-align: center;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+        }
+        
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            min-width: 180px;
+            justify-content: center;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .discord-btn {
+            background-color: var(--discord);
+            color: var(--light);
+        }
+        
+        .discord-btn:hover {
+            background-color: #4752C4;
+        }
+        
+        .tiktok-btn {
+            background-color: var(--tiktok);
+            color: var(--light);
+        }
+        
+        .tiktok-btn:hover {
+            background-color: #333333;
+        }
+        
+        .social-icon {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 4rem 5% 2rem;
+            border-top: 2px solid var(--primary);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-column a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+        
+        .newsletter input {
+            padding: 0.75rem 1rem;
+            border-radius: 5px;
+            border: none;
+            background-color: var(--dark-gray);
+            color: var(--light);
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--dark-gray);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Ad Spaces */
+        .ad-container {
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .ad-banner {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 60vh;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .games-grid, .news-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .search-bar input {
+                min-width: 150px;
+            }
+            
+            .cta-buttons, .social-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn, .social-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo">
+            <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21 6c-1.66 0-3 1.34-3 3v4c0 .55-.45 1-1 1h-1v-2c0-1.66-1.34-3-3-3h-4c-1.66 0-3 1.34-3 3v2H7c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h1v1c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-1h1c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1V6zm-9 5c0-.55.45-1 1-1h4c.55 0 1 .45 1 1v2h-6v-2z"/>
+            </svg>
+            GameVerse
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="leaderboards.html">Leaderboards</a></li>
+                <li><a href="community.html">Community</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Search games..." aria-label="Search games">
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Your Gateway to Gaming Excellence</h1>
+            <p>Discover, download, and dominate the latest games with our curated collection and exclusive content.</p>
+            <div class="cta-buttons">
+                <a href="games.html" class="btn btn-primary">Browse Games</a>
+                <a href="news.html" class="btn btn-secondary">Latest News</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Trending Games -->
+    <section class="section">
+        <h2 class="section-title">Trending Games</h2>
+        <div class="games-grid">
+            <!-- Game 1 -->
+            <div class="game-card">
+                <img src="assets/game1.webp" alt="Cyber Legends" loading="lazy">
+                <div class="game-info">
+                    <h3>Cyber Legends</h3>
+                    <div class="game-meta">
+                        <span>Action RPG</span>
+                        <span>★ 4.8/5</span>
+                    </div>
+                    <a href="download.html?id=1" class="btn btn-primary">Install Now</a>
+                </div>
+            </div>
+            
+            <!-- Game 2 -->
+            <div class="game-card">
+                <img src="assets/game2.webp" alt="Space Odyssey" loading="lazy">
+                <div class="game-info">
+                    <h3>Space Odyssey</h3>
+                    <div class="game-meta">
+                        <span>Adventure</span>
+                        <span>★ 4.7/5</span>
+                    </div>
+                    <a href="download.html?id=2" class="btn btn-primary">Install Now</a>
+                </div>
+            </div>
+            
+            <!-- Game 3 -->
+            <div class="game-card">
+                <img src="assets/game3.webp" alt="Zombie Survival" loading="lazy">
+                <div class="game-info">
+                    <h3>Zombie Survival</h3>
+                    <div class="game-meta">
+                        <span>Horror</span>
+                        <span>★ 4.5/5</span>
+                    </div>
+                    <a href="download.html?id=3" class="btn btn-primary">Install Now</a>
+                </div>
+            </div>
+            
+            <!-- Game 4 -->
+            <div class="game-card">
+                <img src="assets/game4.webp" alt="Racing Masters" loading="lazy">
+                <div class="game-info">
+                    <h3>Racing Masters</h3>
+                    <div class="game-meta">
+                        <span>Racing</span>
+                        <span>★ 4.6/5</span>
+                    </div>
+                    <a href="download.html?id=4" class="btn btn-primary">Install Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ad Banner -->
+        <div class="ad-container">
+            <img src="assets/ad-banner1.webp" alt="Advertisement" class="ad-banner" loading="lazy">
+        </div>
+        
+        <!-- New Releases -->
+        <h2 class="section-title">New Releases</h2>
+        <div class="games-grid">
+            <!-- Game 5 -->
+            <div class="game-card">
+                <img src="assets/game5.webp" alt="Fantasy Quest" loading="lazy">
+                <div class="game-info">
+                    <h3>Fantasy Quest</h3>
+                    <div class="game-meta">
+                        <span>MMORPG</span>
+                        <span>★ 4.9/5</span>
+                    </div>
+                    <a href="download.html?id=5" class="btn btn-primary">Install Now</a>
+                </div>
+            </div>
+            
+            <!-- Game 6 -->
+            <div class="game-card">
+                <img src="assets/game6.webp" alt="Battle Royale" loading="lazy">
+                <div class="game-info">
+                    <h3>Battle Royale</h3>
+                    <div class="game-meta">
+                        <span>Shooter</span>
+                        <span>★ 4.7/5</span>
+                    </div>
+                    <a href="download.html?id=6" class="btn btn-primary">Install Now</a>
+                </div>
+            </div>
+            
+            <!-- Game 7 -->
+            <div class="game-card">
+                <img src="assets/game7.webp" alt="Puzzle Masters" loading="lazy">
+                <div class="game-info">
+                    <h3>Puzzle Masters</h3>
+                    <div class="game-meta">
+                        <span>Puzzle</span>
+                        <span>★ 4.5/5</span>
+                    </div>
+                    <a href="download.html?id=7" class="btn btn-primary">Install Now</a>
+                </div>
+            </div>
+            
+            <!-- Game 8 -->
+            <div class="game-card">
+                <img src="assets/game8.webp" alt="Sports 2024" loading="lazy">
+                <div class="game-info">
+                    <h3>Sports 2024</h3>
+                    <div class="game-meta">
+                        <span>Sports</span>
+                        <span>★ 4.6/5</span>
+                    </div>
+                    <a href="download.html?id=8" class="btn btn-primary">Install Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- News Section -->
+    <section class="news-section">
+        <h2 class="section-title">Latest Gaming News</h2>
+        <div class="news-grid">
+            <!-- News 1 -->
+            <div class="news-card">
+                <img src="assets/news1.webp" alt="Cyber Legends DLC" loading="lazy">
+                <div class="news-content">
+                    <div class="news-date">June 8, 2024</div>
+                    <h3>New DLC Announced for Cyber Legends</h3>
+                    <p>The developers have revealed exciting new content coming next month with three new story missions and expanded multiplayer maps.</p>
+                    <a href="news-article.html?id=1" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+            
+            <!-- News 2 -->
+            <div class="news-card">
+                <img src="assets/news2.webp" alt="E3 2024 Announcements" loading="lazy">
+                <div class="news-content">
+                    <div class="news-date">June 5, 2024</div>
+                    <h3>E3 2024: Biggest Announcements</h3>
+                    <p>Recap of all the major game reveals and trailers from this year's E3 conference including surprise releases and upcoming titles.</p>
+                    <a href="news-article.html?id=2" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+            
+            <!-- News 3 -->
+            <div class="news-card">
+                <img src="assets/news3.webp" alt="Console Update" loading="lazy">
+                <div class="news-content">
+                    <div class="news-date">June 2, 2024</div>
+                    <h3>Upcoming Console Update Adds New Features</h3>
+                    <p>The next system update will include quality-of-life improvements, new social features, and enhanced performance modes.</p>
+                    <a href="news-article.html?id=3" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Social Media Section -->
+    <section class="social-section">
+        <h2 class="section-title">Join Our Community</h2>
+        <p>Connect with us on social media for exclusive content, giveaways, and the latest updates.</p>
+        
+        <div class="social-buttons">
+            <a href="https://discord.gg/gameverse" class="social-btn discord-btn" target="_blank" rel="noopener noreferrer">
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.54 0c1.356 0 2.46 1.104 2.46 2.472v19.056c0 1.368-1.104 2.472-2.46 2.472h-15.08c-1.356 0-2.46-1.104-2.46-2.472v-19.056c0-1.368 1.104-2.472 2.46-2.472h15.08zm-4.632 15.672c2.652-.084 3.672-1.824 3.672-1.824 0-3.864-1.728-6.996-1.728-6.996-1.728-1.296-3.372-1.26-3.372-1.26l-.168.192c2.04.624 2.988 1.524 2.988 1.524-1.248-.684-2.472-1.02-3.612-1.152-.864-.096-1.692-.072-2.424.024l-.204.024c-.42.036-1.44.192-2.724.756-.444.204-.708.348-.708.348s.996-.948 3.156-1.572l-.12-.144s-1.644-.036-3.372 1.26c0 0-1.728 3.132-1.728 6.996 0 0 1.008 1.74 3.66 1.824 0 0 .444-.54.804-.996-1.524-.456-2.1-1.416-2.1-1.416l.336.204.048.036.047.024.012.012.044.036c.3.228.6.408.876.54.048.024.084.048.132.072.588.276 1.224.42 1.884.444.48 0 .936-.06 1.38-.156l.072-.012c.54-.132 1.044-.324 1.512-.564 0 0-.576.96-2.148 1.404.36.456.792.972.792.972zm-5.58-5.604c-.684 0-1.26.6-1.26 1.332 0 .732.552 1.332 1.26 1.332.708 0 1.26-.6 1.26-1.332.012-.732-.552-1.332-1.26-1.332zm4.632 0c-.684 0-1.26.6-1.26 1.332 0 .732.552 1.332 1.26 1.332.708 0 1.26-.6 1.26-1.332 0-.732-.552-1.332-1.26-1.332z"/>
+                </svg>
+                Join Discord
+            </a>
+            
+            <a href="https://tiktok.com/@gameverse" class="social-btn tiktok-btn" target="_blank" rel="noopener noreferrer">
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                </svg>
+                Follow TikTok
+            </a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>GameVerse</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="press.html">Press</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Games</h3>
+                <ul>
+                    <li><a href="games.html">Browse All</a></li>
+                    <li><a href="new-releases.html">New Releases</a></li>
+                    <li><a href="top-rated.html">Top Rated</a></li>
+                    <li><a href="upcoming.html">Upcoming</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="forums.html">Forums</a></li>
+                    <li><a href="leaderboards.html">Leaderboards</a></li>
+                    <li><a href="tournaments.html">Tournaments</a></li>
+                    <li><a href="streamers.html">Streamers</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="report.html">Report Issue</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column newsletter">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get the latest gaming news and offers</p>
+                <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
+                <button class="btn btn-primary">Subscribe</button>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2024 GameVerse. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+    </footer>
+    
+    <!-- Bottom Ad Banner -->
+    <div class="ad-container">
+        <img src="assets/ad-banner2.webp" alt="Advertisement" class="ad-banner" loading="lazy">
+    </div>
+</body>
+</html>
