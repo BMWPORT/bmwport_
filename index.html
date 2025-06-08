@@ -408,81 +408,432 @@
     <!-- JavaScript -->
     <script>
         // Game Data with download links
-        const gamesData = [
-            {
-                id: 1,
-                title: "Space Battle",
-                category: "action",
-                image: "https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                description: "An action game in space with lots of shooting and explosions!",
-                downloadUrl: "#",
-                fileSize: "1.2 GB"
-            },
-            {
-                id: 2,
-                title: "Treasure Hunt",
-                category: "adventure",
-                image: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                description: "An adventure game full of treasure hunting and puzzles.",
-                downloadUrl: "#",
-                fileSize: "850 MB"
-            },
-            {
-                id: 3,
-                title: "Quick Reflexes",
-                category: "action",
-                image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                description: "Test your reflexes in this fast-paced action game.",
-                downloadUrl: "#",
-                fileSize: "750 MB"
-            },
-            {
-                id: 3,
-                title: "Metro 2033 Redux",
-                category: "Kill zombies and survive the apocalypse.",
-                image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                description: "Kill zombies and survive the apocalypse.",
-                downloadUrl: "https://ouo.io/49teQ8",
-                fileSize: "6.1GB"
-            },
-            {
-                id: 4,
-                title: "Scedule |",
-                category: "adventure",
-                image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                description: "Solve magical puzzles and unlock ancient mechanisms.",
-                downloadUrl: "https://ouo.io/33ND9hJ",
-                fileSize: "1.8GB"
-            },
-            {
-                id: 5,
-                title: "My summer car",
-                category: "adventure",
-                image: "https://m.media-amazon.com/images/M/MV5BNTQ4MjEyZjQtOTM1MC00N2FmLWJhYzUtYWVjZGU3ZjNlZGI3XkEyXkFqcGc@.jpg",
-                description: "Repair your car with love and beer.",
-                downloadUrl: "https://ouo.io/Po6amK",
-                fileSize: "350.5MB"
-            },
-            {
-                id: 6,
-                title: "DeltaRune",
-                category: "action",
-                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Deltarune_vector_logo.svg/500px-Deltarune_vector_logo.svg.png",
-                description: "2D pixel game.",
-                downloadUrl: "https://ouo.io/pRxMdG",
-                fileSize: "384.0MB"
-            }
-            {
-                id: 7,
-                title: "DeltaRun",
-                category: "action",
-                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Deltarune_vector_logo.svg/500px-Deltarune_vector_logo.svg.png",
-                description: "2D pixel game.",
-                downloadUrl: "https://ouo.io/pRxMdG",
-                fileSize: "384.0MB"
-            }
-        ];
-
+           // Game data
+    const games = [
+      {
+        title: "Schedule I",
+        description: "Build your empire as a drug dealer in a gritty, story-driven open-world crime simulator.",
+        tags: "multiplayer",
+        image: "schedule1.png",
+        link: "https://tpi.li/schedulei"
+      ,
+        version: "0.3.6 (Beta)"
+      },
+      {
+        title: "Sons Of The Forest",
+        description: "Survive a deadly island filled with mutants using crafting, co-op, and intense exploration mechanics.",
+        tags: "multiplayer",
+        image: "sons-of-the-forest.png",
+        link: "https://tpi.li/SonsOfTheForest"
+      ,
+        version: "1.16"
+      },
+      {
+        title: "Ready Or Not",
+        description: "Lead a SWAT team in realistic tactical missions focused on strategy, teamwork, and precision.",
+        tags: "multiplayer",
+        image: "ready-or-not.png",
+        link: "https://tpi.li/ReadyOrNot"
+      ,
+        version: "1.04"
+      },
+      {
+        title: "Raft",
+        description: "Survive at sea by gathering resources, expanding your raft, and exploring with friends in co-op.",
+        tags: "multiplayer",
+        image: "raft.png",
+        link: "https://tpi.li/Raft"
+      ,
+        version: "1.09"
+      },
+      {
+        title: "Euro Truck Simulator 2",
+        description: "Drive across Europe delivering cargo, customizing trucks, and managing your own growing transport business.",
+        tags: "multiplayer",
+        image: "ets2.png",
+        link: "https://tpi.li/ETS2PP"
+      ,
+        version: "1.54"
+      },
+      {
+        title: "The Forest",
+        description: "Survive a mysterious forest after a plane crash, fighting cannibals and uncovering hidden horrors.",
+        tags: "multiplayer",
+        image: "the-forest.png",
+        link: "https://tpi.li/LeQEch"
+      ,
+        version: "1.12"
+      },
+      {
+        title: "Thief Simulator",
+        description: "Plan, sneak, and steal your way through neighborhoods as a professional, upgradeable thief.",
+        tags: "singleplayer",
+        image: "thief-simulator.png",
+        link: "https://tpi.li/X6djvbVMDI6"
+      ,
+        version: "1.8"
+      },
+      {
+        title: "Portal 2",
+        description: "A puzzle-platform game that uses a portal gun to solve spatial puzzles and advance through the levels.",
+        tags: "multiplayer",
+        image: "portal2.jpg",
+        link: "https://tpi.li/uE0P3Rg9jAi"
+      ,
+        version: "1.0.0.8"
+      },
+      {
+        title: "ULTRAKILL",
+        description: "Fast-paced shooting, blood-fueled health, and nonstop action in a brutal retro-style arena.",
+        tags: "singleplayer",
+        image: "ULTRAKILL.jpg",
+        link: "https://tpi.li/uG78"
+      ,
+        version: "0.6.7"
+      },
+      {
+        title: "Elden Ring",
+        description: "Explore a dark fantasy world, battle deadly foes, and uncover ancient secrets.",
+        tags: "singleplayer",
+        image: "Elden-Ring.jpg",
+        link: "https://tpi.li/EldenRingPP"
+      ,
+        version: "1.16"
+      },
+      {
+        title: "Golf With Your Friends",
+        description: "Chaotic mini-golf with friends across crazy, trap-filled courses.",
+        tags: "multiplayer",
+        image: "Golf-With-Your-Friends.jpg",
+        link: "https://pastebin.com/raw/2TENEV62"
+      ,
+        version: "1.14"
+      },
+      {
+        title: "Geometry Dash",
+        description: "Dodge obstacles to the beat in a tough, rhythm-based platformer.",
+        tags: "singleplayer",
+        image: "Geometry-Dash.jpg",
+        link: "https://tpi.li/GraveDigger"
+      ,
+        version: "2.207"
+      },
+      {
+        title: "Subnautica",
+        description: "Survive, craft, and dive deep into an alien ocean full of mystery.",
+        tags: "singleplayer",
+        image: "Subnautica.jpg",
+        link: "https://tpi.li/0PmqL2"
+      ,
+        version: "1.12.5"
+      },
+      {
+        title: "Half-Life 2",
+        description: "A legendary sci-fi FPS where you fight the alien Combine with physics-based puzzles and gripping storytelling.",
+        tags: "singleplayer",
+        image: "half-life2.jpg",
+        link: "https://tpi.li/m5U2b1lePB"
+      ,
+        version: "1.0.0.8"
+      },
+      {
+        title: "TCG Card Shop Simulator",
+        description: "Run your own trading card shop buy, sell, and trade cards while managing inventory and satisfying collectors.",
+        tags: "singleplayer",
+        image: "TCG Card Shop Simulator.jpg",
+        link: "https://tpi.li/tcgcss"
+      ,
+        version: "0.52"
+      },
+      {
+        title: "Hotline Miami",
+        description: "A brutal top-down shooter with neon aesthetics, intense action, and a mind-bending story set in 1989 Miami.",
+        tags: "singleplayer",
+        image: "Hotline Miami.jpg",
+        link: "https://tpi.li/92ZJk7PAAz"
+      ,
+        version: "1.0.10"
+      },
+      {
+        title: "Mafia: Definitive Edition",
+        description: "Step into the 1930s underworld as a cab driver turned mobster in this gripping, story-driven crime saga.",
+        tags: "singleplayer",
+        image: "mafia 1 definitive edition.jpg",
+        link: "https://tpi.li/1lTBNZjjL"
+      ,
+        version: "1.3.2"
+      },
+      {
+        title: "Internet Cafe Simulator 2",
+        description: "Build, customize, and protect your internet café in a chaotic world of customers, upgrades, and shady decisions.",
+        tags: "singleplayer",
+        image: "Internet Cafe Simulator 2.jpg",
+        link: "https://tpi.li/Bi7wTH3"
+      ,
+        version: "1.1.4"
+      },
+      {
+        title: "My Summer Car",
+        description: "Build and survive with your own car in 1990s Finland while managing thirst, hunger, and permadeath.",
+        tags: "singleplayer",
+        image: "My Summer Car.jpg",
+        link: "https://tpi.li/8p6DtyNeIG"
+      ,
+        version: "0.9.39"
+      },
+      {
+        title: "People Playground",
+        description: "A sandbox playground for experimenting with physics and destruction using ragdolls, tools, and dark creativity.",
+        tags: "singleplayer",
+        image: "People Playground.jpg",
+        link: "https://tpi.li/bgPs0"
+      ,
+        version: "1.28"
+      },
+      {
+        title: "Saints Row 2",
+        description: "Rule the streets in this over-the-top open-world action game filled with chaos, gangs, and wild missions.",
+        tags: "singleplayer",
+        image: "Saints Row 2.jpg",
+        link: "https://tpi.li/rfgmHMJYeT"
+      ,
+        version: "1.02"
+      },
+      {
+        title: "Thief Simulator 2",
+        description: "Sneak, steal, and scheme in a realistic stealth game where planning and timing are everything.",
+        tags: "singleplayer",
+        image: "Thief Simulator 2.png",
+        link: "https://tpi.li/3rsNC"
+      ,
+        version: "1.0.1"
+      },
+      {
+        title: "Who’s Your Daddy",
+        description: "A bizarre multiplayer game where a clueless baby and a desperate dad clash in weird household showdowns.",
+        tags: "multiplayer",
+        image: "Who’s Your Daddy.jpg",
+        link: "https://tpi.li/zNvZ6yHs3el"
+      ,
+        version: "1.4.3"
+      },
+      {
+        title: "Grand Theft Auto IV",
+        description: "Experience GTA 4's Liberty City as Niko, Luis, and Johnny across the complete story with all DLCs included.",
+        tags: "singleplayer",
+        image: "gtaiv.jpg",
+        link: "https://tpi.li/gtaiv"
+      ,
+        version: "1.1.3.0"
+      },
+      {
+        title: "Stardew Valley",
+        description: "Build your dream farm, grow crops, raise animals, and explore a cozy countryside village life.",
+        tags: "multiplayer",
+        image: "Stardew valley.jpg",
+        link: "https://tpi.li/J4xY9KVg"
+      ,
+        version: "1.6.5"
+      },   
+      {
+        title: "The Precinct",
+        description: "Take on the role of a cop, patrol the city, and bring justice in this top-down police simulator.",
+        tags: "singleplayer",
+        image: "the precint.jpg",
+        link: "https://tpi.li/7JU7IhE"
+      ,
+        version: "1.4.1"
+      },  
+      {
+        title: "Flashing Lights",
+        description: "Join the police, fire department, or EMS and respond to emergencies in this open-world rescue simulator.",
+        tags: "singleplayer",
+        image: "flashing lights.jpg",
+        link: "https://tpi.li/fmuSEIT"
+      ,
+        version: "1.0"
+      },      
+      {
+        title: "SpaceEngine",
+        description: "Explore the entire universe in a realistic 3D space simulator featuring stars, planets, galaxies, and more.",
+        tags: "singleplayer",
+        image: "SpaceEngine.jpg",
+        link: "https://tpi.li/SpaceEngine"
+      ,
+        version: "0.990.23"
+      },     
+      {
+        title: "Red Dead Redemption",
+        description: "Ride into the Wild West as an outlaw seeking redemption in this iconic open-world action-adventure game.",
+        tags: "singleplayer",
+        image: "red dead redemption.jpg",
+        link: "https://tpi.li/rdr1pp"
+      ,
+        version: "1.0"
+      }, 
+      {
+        title: "Teardown",
+        description: "Plan heists and destroy everything in a fully destructible voxel world using physics-based tools and strategy.",
+        tags: "singleplayer",
+        image: "teardown.jpg",
+        link: "https://tpi.li/teardown"
+      ,
+        version: "1.6"
+      },      
+      {
+        title: "House Flipper 2",
+        description: "Buy, renovate, and decorate homes from the ground up in this realistic and creative house renovation simulator.",
+        tags: "singleplayer",
+        image: "House Flipper 2.jpg",
+        link: "https://tpi.li/HouseFlipper2"
+      ,
+        version: "1.8"
+      }, 
+      {
+        title: "Red Dead Redemption 2",
+        description: "Ride into the American frontier as Arthur Morgan in this massive open-world epic full of outlaws, heists, and freedom.",
+        tags: "singleplayer",
+        image: "rdr2.jpg",
+        link: "https://tpi.li/rdr2pp"
+      ,
+        version: "1.32"
+      }, 
+      {
+        title: "Detroit: Become Human",
+        description: "Play as three androids in a story-driven game where every choice shapes the future of a divided world.",
+        tags: "singleplayer",
+        image: "Detroit Become Human.jpg",
+        link: "https://tpi.li/DetroitBecomeHuman"
+      ,
+        version: "1.09"
+      }, 
+      {
+        title: "Grand Theft Auto: Vice City The Definitive Edition",
+        description: "Return to a remastered Vice City from the Trilogy, where neon lights and crime define the iconic GTA experience.",
+        tags: "singleplayer",
+        image: "gtavicecitydef.jpg",
+        link: "https://tpi.li/ViceCityTheDefinitiveEdition"
+      ,
+        version: "1.112"
+      }, 
+      {
+        title: "Grand Theft Auto: San Andreas The Definitive Edition",
+        description: "Follow CJ’s story in a remastered version of GTA: SA with enhanced graphics, improved gameplay, and iconic missions.",
+        tags: "singleplayer",
+        image: "gtasadef.jpg",
+        link: "https://tpi.li/GTASanAndreasDefinitiveEdition"
+      ,
+        version: "1.112"
+      }, 
+      {
+        title: "Grand Theft Auto: GTA III The Definitive Edition",
+        description: "The open-world classic returns remastered with new visuals, lighting, and controls in Liberty City’s underworld.",
+        tags: "singleplayer",
+        image: "gta3def.png",
+        link: "https://tpi.li/GTA3DefinitiveEdition"
+      ,
+        version: "1.112"
+      }, 
+      {
+        title: "Grand Theft Auto: Vice City",
+        description: "Enter the neon-soaked 1980s as Tommy Vercetti in this classic tale of crime, power, and Miami-inspired chaos.",
+        tags: "singleplayer",
+        image: "gtavicecity.jpg",
+        link: "https://tpi.li/gtavcpp"
+      ,
+        version: "1.0"
+      }, 
+      {
+        title: "Grand Theft Auto: SA",
+        description: "Follow CJ’s journey through crime, corruption, and chaos in one of Rockstar’s most iconic open-world adventures.",
+        tags: "singleplayer",
+        image: "gtasa.jpg",
+        link: "https://tpi.li/gtasa"
+      ,
+        version: "1.0"
+      }, 
+      {
+        title: "Grand Theft Auto: GTA III",
+        description: "Step into Liberty City as Claude in the classic that defined open-world games with crime, chaos, and freedom.",
+        tags: "singleplayer",
+        image: "gta3.png",
+        link: "https://tpi.li/gta3pp"
+      ,
+        version: "1.0"
+      }, 
+      {
+        title: "Ghost of Tsushima",
+        description: "Become Jin Sakai, a samurai turned ghost, as you fight to free Tsushima in this cinematic open-world adventure.",
+        tags: "singleplayer",
+        image: "Ghost of Tsushima.jpg",
+        link: "https://tpi.li/GOTDC"
+      ,
+        version: "1.0.5"
+      }, 
+      {
+        title: "HITMAN World of Assassination",
+        description: "Become Agent 47 and carry out global assassinations in a stealth game full of creativity and replayable missions.",
+        tags: "singleplayer",
+        image: "HITMAN World of Assassination.png",
+        link: "https://tpi.li/hitmanwoa"
+      ,
+        version: "3.2"
+      }, 
+      {
+        title: "Max Payne 3",
+        description: "Dive into a gritty action-shooter as Max battles his past and corruption in a brutal story of revenge and survival.",
+        tags: "singleplayer",
+        image: "max payne 3.jpg",
+        link: "https://tpi.li/maxpayne3"
+      ,
+        version: "1.0.0.272"
+      }, 
+      {
+        title: "Balatro",
+        description: "A roguelike deckbuilder where poker hands, jokers, and combos collide in a chaotic chase for high scores.",
+        tags: "singleplayer",
+        image: "Balatro.jpg",
+        link: "https://tpi.li/balatropp"
+      ,
+        version: "1.0.1c"
+      }, 
+      {
+        title: "ELDEN RING NIGHTREIGN",
+        description: "Explore Limveld in this roguelike set in the Elden Ring universe. Survive deadly nights and face powerful Nightlords.",
+        tags: "singleplayer",
+        image: "ELDEN RING NIGHTREIGN.jpg",
+        link: "https://tpi.li/NIGHTREIGN"
+      ,
+        version: "1.01"
+      }, 
+      {
+        title: "Modern Warfare 2",
+        description: "Relive the intense, campaign of this legendary FPS with unforgettable missions, characters, and explosive moments.",
+        tags: "singleplayer",
+        image: "Modern Warfare 2.jpg",
+        link: "https://tpi.li/ModernWarfare2"
+      ,
+        version: "1.2.208"
+      }, 
+      {
+        title: "Watch Dogs 2",
+        description: "Hack the system as Retr0 in a vibrant open-world San Francisco filled with tech, chaos, and anti-corporate rebellion.",
+        tags: "singleplayer",
+        image: "Watch Dogs 2.jpg",
+        link: "https://tpi.li/WatchDogs2"
+      ,
+        version: "1.17"
+      }, 
+      {
+        title: "DELTARUNE",
+        description: "A surreal RPG filled with strange characters, wild battles, and a story where your choices might not matter at all.",
+        tags: "singleplayer",
+        image: "deltarune.jpg",
+        link: "https://tpi.li/DELTARUNE"
+      ,
+        version: "1.0"
+      }, 
+    ];
         // Sample chat messages
         const sampleMessages = [
             { sender: "Admin", text: "Welcome to the GameZone chat!", type: "other" },
