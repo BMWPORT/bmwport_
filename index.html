@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameHub - Download Games & Chat</title>
+    <title>GameZone - Download Games & Chat</title>
     <style>
         /* Reset and Base Styles */
         * {
@@ -52,7 +52,7 @@
             color: #e6e6e6;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s;
+            transition: color 0.3s;
             padding: 0.5rem 1rem;
             border-radius: 4px;
         }
@@ -60,64 +60,6 @@
         nav ul li a:hover {
             color: #f05454;
             background-color: rgba(240, 84, 84, 0.1);
-        }
-
-        /* Social Media Buttons */
-        .discord-btn {
-            background-color: #5865F2;
-            color: white !important;
-            padding: 0.5rem 1rem !important;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .discord-btn:hover {
-            background-color: #4752C4 !important;
-            color: white !important;
-        }
-
-        .tiktok-btn {
-            background-color: #000000;
-            color: white !important;
-            padding: 0.5rem 1rem !important;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .tiktok-btn:hover {
-            background-color: #333333 !important;
-            color: white !important;
-        }
-
-        .tiktok-btn::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.3) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(30deg);
-            transition: all 0.3s;
-            opacity: 0;
-        }
-
-        .tiktok-btn:hover::before {
-            left: 100%;
-            opacity: 1;
         }
         
         /* Main Content Styles */
@@ -405,33 +347,17 @@
                 border-radius: 0;
             }
         }
-
-        /* Social Media Icons */
-        .social-icon {
-            width: 20px;
-            height: 20px;
-            filter: brightness(0) invert(1);
-        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <header>
-        <div class="logo">GameHub</div>
+        <div class="logo">GameZone</div>
         <nav>
             <ul>
                 <li><a href="#games">Download Games</a></li>
                 <li><a href="#forum">Forum</a></li>
                 <li><a href="#chat">Chat</a></li>
-                <!-- Add social media buttons -->
-                <li><a href="https://discord.gg/8nAM4vwz" target="_blank" class="discord-btn">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord" class="social-icon">
-                    Discord
-                </a></li>
-                <li><a href="https://www.tiktok.com/@gamehub_4ever" target="_blank" class="tiktok-btn">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" class="social-icon">
-                    TikTok
-                </a></li>
             </ul>
         </nav>
     </header>
@@ -442,9 +368,10 @@
         <section id="games">
             <h2>Download Games</h2>
             <div class="game-categories">
-                <button class="category-btn active" data-category="all">All games</button>
-                <button class="category-btn" data-category="action">online games</button>
-                <button class="category-btn" data-category="adventure">singleplayer games</button>
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="action">Action</button>
+                <button class="category-btn" data-category="adventure">Adventure</button>
+                <button class="category-btn" data-category="puzzle">Puzzle</button>
             </div>
             <div class="games-grid" id="games-container">
                 <!-- Games will be loaded here via JavaScript -->
@@ -457,8 +384,8 @@
             <div class="forum-topics">
                 <div class="forum-topic">
                     <div class="forum-topic-info">
-                        <h3>Pasword in WinRAR?</h3>
-                        <p>GameHud and gamehud</p>
+                        <h3>What are you playing right now?</h3>
+                        <p>Last reply: 2 hours ago | 45 replies</p>
                     </div>
                 </div>
                 <div class="forum-topic">
@@ -478,78 +405,89 @@
         </section>
     </main>
 
+    <!-- Chat System -->
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header" id="chat-header">
+            <span>Gamer Chat</span>
+            <span id="chat-toggle">▲</span>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="chat-messages" id="chat-messages">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button id="chat-send">Send</button>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script>
         // Game Data with download links
         const gamesData = [
             {
                 id: 1,
-                title: "Mon Bazou",
-                category: "adventure",
-                image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1520370/capsule_616x353.jpg?t=1730218880",
+                title: "Space Battle",
+                category: "action",
+                image: "https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 description: "An action game in space with lots of shooting and explosions!",
-                downloadUrl: "https://ouo.io/Afn49i",
-                fileSize: "534.4MB"
+                downloadUrl: "#",
+                fileSize: "1.2 GB"
             },
             {
                 id: 2,
-                title: "Internet Cefe Simulator",
+                title: "Treasure Hunt",
                 category: "adventure",
-                image: "https://gaming-cdn.com/images/products/10219/616x353/internet-cafe-simulator-2-pc-game-steam-cover.jpg?v=1737112376",
-                description: "Build, customize, and protect your internet café in a chaotic world of customers, upgrades, and shady decisions.",
-                downloadUrl: "https://ouo.io/GKHSZ2",
-                fileSize: "2.7GB"
+                image: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                description: "An adventure game full of treasure hunting and puzzles.",
+                downloadUrl: "#",
+                fileSize: "850 MB"
             },
             {
                 id: 3,
-                title: "Metro 2033 Redux",
-                category: "Kill zombies and survive the apocalypse.",
-                image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/286690/header.jpg?t=1741110084",
-                description: "Kill zombies and survive the apocalypse.",
-                downloadUrl: "https://ouo.io/49teQ8",
-                fileSize: "6.1GB"
+                title: "Quick Reflexes",
+                category: "action",
+                image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                description: "Test your reflexes in this fast-paced action game.",
+                downloadUrl: "#",
+                fileSize: "750 MB"
             },
             {
                 id: 4,
-                title: "Scedule |",
-                category: "adventure",
-                image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3164500/header.jpg?t=1748368581",
+                title: "Magic Puzzles",
+                category: "puzzle",
+                image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 description: "Solve magical puzzles and unlock ancient mechanisms.",
-                downloadUrl: "https://ouo.io/33ND9hJ",
-                fileSize: "1.8GB"
+                downloadUrl: "#",
+                fileSize: "500 MB"
             },
             {
                 id: 5,
-                title: "My summer car",
+                title: "Jungle Adventure",
                 category: "adventure",
-                image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/516750/header.jpg?t=1736372299",
-                description: "Repair your car with love and beer.",
-                downloadUrl: "https://ouo.io/Po6amK",
-                fileSize: "350.5MB"
+                image: "https://images.unsplash.com/photo-1464207687429-7505649dae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                description: "Embark on an incredible adventure in the heart of the jungle.",
+                downloadUrl: "#",
+                fileSize: "1.5 GB"
             },
             {
                 id: 6,
-                title: "DeltaRune",
-                category: "action",
-                image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1671210/7ccda5b1631d2e60cc756a3271e845dbb9168821/header.jpg?t=1749252480",
-                description: "2D pixel game.",
-                downloadUrl: "https://ouo.io/pRxMdG",
-                fileSize: "384.0MB"
-            }
-             {
-                id: 7,
-                title: "flapiburd",
-                category: "action",
-                image: "https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=1200,height=1200,fit=cover,f=png/5e0df231478aa0a331a4718d09dd91a2.png",
-                description: "idk2",
-                downloadUrl: "https://www.pornhub.com/",
-                fileSize: "384.0MB"
+                title: "Number Puzzles",
+                category: "puzzle",
+                image: "https://images.unsplash.com/photo-1589254065909-b7086229d08c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                description: "Puzzle game with numbers that will make you think.",
+                downloadUrl: "#",
+                fileSize: "300 MB"
             }
         ];
 
         // Sample chat messages
         const sampleMessages = [
-         { sender: "GAME BOT", text: "Check discord, everything is writen there", type: "other", type: "other" },
+            { sender: "Admin", text: "Welcome to the GameZone chat!", type: "other" },
+            { sender: "Peter", text: "Hi! Is anyone playing Elden Ring?", type: "other" },
+            { sender: "Maria", text: "I started it yesterday, it's really hard!", type: "other" },
+            { sender: "Alex", text: "Check out the new Space Battle game in the Games section!", type: "other" }
         ];
 
         // DOM Elements
@@ -733,4 +671,3 @@
     </script>
 </body>
 </html>
-
