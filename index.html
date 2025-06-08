@@ -724,3 +724,194 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub Chat</title>
+    <style>
+        :root {
+            --game-primary: #6a5acd;  /* Purple */
+            --game-secondary: #ff4500; /* Orange */
+            --game-dark: #1a1a2e;
+            --game-light: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--game-dark);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        #gamehub-chat {
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(106, 90, 205, 0.5);
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(145deg, #2a2a3a, #1a1a2e);
+        }
+        
+        #chat-header {
+            background: var(--game-primary);
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5em;
+            border-bottom: 3px solid var(--game-secondary);
+        }
+        
+        #chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .message {
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 70%;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .user-message {
+            background: var(--game-primary);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 3px;
+        }
+        
+        .bot-message {
+            background: #33334d;
+            margin-right: auto;
+            border-bottom-left-radius: 3px;
+        }
+        
+        #chat-input-container {
+            display: flex;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        #user-input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            outline: none;
+        }
+        
+        #send-button {
+            background: var(--game-secondary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        
+        #send-button:hover {
+            background: #ff6347;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Scrollbar styling */
+        #chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        #chat-messages::-webkit-scrollbar-thumb {
+            background: var(--game-primary);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="gamehub-chat">
+        <div id="chat-header">
+            🎮 GameHub Chat
+        </div>
+        <div id="chat-messages"></div>
+        <div id="chat-input-container">
+            <input type="text" id="user-input" placeholder="Ask about games, esports, or gaming tech..." autofocus>
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        
+        // Unique conversation ID
+        const conversationId = 'gamehub_' + Math.random().toString(36).substr(2, 9);
+        
+        function addMessage(role, content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(role + '-message');
+            messageDiv.textContent = content;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+            
+            addMessage('user', message);
+            userInput.value = '';
+            
+            try {
+                const response = await fetch('http://localhost:5000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        conversation_id: conversationId,
+                        message: message
+                    })
+                });
+                
+                const data = await response.json();
+                addMessage('bot', data.response);
+            } catch (error) {
+                addMessage('bot', '⚠️ Connection error! Try again.');
+                console.error('Error:', error);
+            }
+        }
+        
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+        
+        // Initial welcome message
+        setTimeout(() => {
+            addMessage('bot', '🎮 Welcome to GameHub Chat! Ask me about games, esports, or gaming tech. GG!');
+        }, 500);
+    </script>
+</body>
+</html>
