@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="GameHub" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="GameHub - Your ultimate gaming portal with the latest news, game downloads, and community features">
     <title>GameHub | Download Games & Latest Gaming News</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -123,7 +123,7 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('assets/hero-bg.webp') no-repeat center center/cover;
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
             height: 70vh;
             min-height: 500px;
             display: flex;
@@ -450,6 +450,8 @@
             padding: 1rem;
             text-align: center;
             margin: 2rem 0;
+            background-color: var(--dark-gray);
+            border-radius: 5px;
         }
         
         .ad-banner {
@@ -545,6 +547,9 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#community">Community</a></li>
             </ul>
         </nav>
         <div class="search-bar">
@@ -558,21 +563,23 @@
             <h1>Your Gateway to Gaming Excellence</h1>
             <p>Discover, download, and dominate the latest games with our curated collection and exclusive content.</p>
             <div class="cta-buttons">
+                <a href="#games" class="btn btn-primary">Browse Games</a>
+                <a href="#community" class="btn btn-secondary">Join Community</a>
             </div>
         </div>
     </section>
     
     <!-- Trending Games -->
-    <section class="section">
-        <h2 class="section-title">Single player Games</h2>
+    <section class="section" id="games">
+        <h2 class="section-title">Single Player Games</h2>
         <div class="games-grid">
             <!-- Game 1 -->
             <div class="game-card">
-                <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/286690/header.jpg?t=1741110084" alt="" loading="lazy">
+                <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/286690/header.jpg?t=1741110084" alt="Metro 2033 Redux" loading="lazy">
                 <div class="game-info">
                     <h3>Metro 2033 Redux</h3>
                     <div class="game-meta">
-                        <span>Kill zombies and survive the apocalypse.</span>
+                        <span>Action, Survival</span>
                         <span>★ 4.8/5</span>
                     </div>
                     <a href="https://ouo.io/49teQ8" class="btn btn-primary">Download</a>
@@ -581,11 +588,11 @@
             
             <!-- Game 2 -->
             <div class="game-card">
-                <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3164500/header.jpg?t=1748368581" alt="" loading="lazy">
+                <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3164500/header.jpg?t=1748368581" alt="Schedule" loading="lazy">
                 <div class="game-info">
-                    <h3>Scedule |</h3>
+                    <h3>Schedule</h3>
                     <div class="game-meta">
-                        <span>Solve magical puzzles and unlock ancient mechanisms.</span>
+                        <span>Puzzle, Adventure</span>
                         <span>★ 4.7/5</span>
                     </div>
                     <a href="https://ouo.io/33ND9hJ" class="btn btn-primary">Download</a>
@@ -594,11 +601,11 @@
             
             <!-- Game 3 -->
             <div class="game-card">
-                <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1520370/header.jpg?t=1730218880" alt="Zombie Survival" loading="lazy">
+                <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1520370/header.jpg?t=1730218880" alt="Mon Bazou" loading="lazy">
                 <div class="game-info">
                     <h3>Mon Bazou</h3>
                     <div class="game-meta">
-                        <span>Build a car from scratch</span>
+                        <span>Simulation, Racing</span>
                         <span>★ 4.5/5</span>
                     </div>
                     <a href="https://ouo.io/amjTi8G" class="btn btn-primary">Download</a>
@@ -611,8 +618,8 @@
                 <div class="game-info">
                     <h3>Deltarun</h3>
                     <div class="game-meta">
-                        <span>2D pixel game</span>
-                        <span>★ 4.0</span>
+                        <span>RPG, Adventure</span>
+                        <span>★ 4.9/5</span>
                     </div>
                     <a href="https://ouo.io/go/pRxMdG" class="btn btn-primary">Download</a>
                 </div>
@@ -620,38 +627,78 @@
             
             <!-- Game 5 -->
             <div class="game-card">
-                <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1671210/capsule_616x353.jpg?t=1749252480" alt="Deltarun" loading="lazy">
+                <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg?t=1700164963" alt="Stardew Valley" loading="lazy">
                 <div class="game-info">
-                    <h3>Deltarun</h3>
+                    <h3>Stardew Valley</h3>
                     <div class="game-meta">
-                        <span>2d</span>
-                        <span>★ 4.0</span>
+                        <span>Farming, RPG</span>
+                        <span>★ 4.8/5</span>
                     </div>
-                    <a href="https://ouo.io/pRxMdG" class="btn btn-primary">Download</a>
+                    <a href="#" class="btn btn-primary">Download</a>
                 </div>
             </div>
 
-                <!-- Game 6 -->
+            <!-- Game 6 -->
             <div class="game-card">
-                <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1671210/capsule_616x353.jpg?t=1749252480" alt="Deltarun" loading="lazy">
+                <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg?t=1700277778" alt="Elden Ring" loading="lazy">
                 <div class="game-info">
-                    <h3>Deltarun</h3>
+                    <h3>Elden Ring</h3>
                     <div class="game-meta">
-                        <span>2d</span>
-                        <span>★ 4.0</span>
+                        <span>Action, RPG</span>
+                        <span>★ 4.9/5</span>
                     </div>
-                    <a href="https://ouo.io/go/pRxMdG" class="btn btn-primary">Download</a>
+                    <a href="#" class="btn btn-primary">Download</a>
                 </div>
             </div>
-            
+        </div>
+        
         <!-- Ad Banner -->
         <div class="ad-container">
-            <img src="assets/ad-banner1.webp" alt="Advertisement" class="ad-banner" loading="lazy">
+            <img src="https://via.placeholder.com/728x90?text=Advertisement" alt="Advertisement" class="ad-banner" loading="lazy">
         </div>
-    
+        
+        <!-- News Section -->
+        <section class="news-section" id="news">
+            <h2 class="section-title">Latest Gaming News</h2>
+            <div class="news-grid">
+                <!-- News 1 -->
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Gaming News" loading="lazy">
+                    <div class="news-content">
+                        <div class="news-date">June 10, 2024</div>
+                        <h3>New Game Releases Coming This Summer</h3>
+                        <p>Discover the most anticipated game releases for the summer season and what to expect from each title.</p>
+                        <a href="#" class="btn btn-secondary">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- News 2 -->
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Gaming Tech" loading="lazy">
+                    <div class="news-content">
+                        <div class="news-date">June 8, 2024</div>
+                        <h3>Next-Gen Console Updates Revealed</h3>
+                        <p>Major console manufacturers announce significant updates to their platforms coming later this year.</p>
+                        <a href="#" class="btn btn-secondary">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- News 3 -->
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1551103782-8ab07afd45c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Esports" loading="lazy">
+                    <div class="news-content">
+                        <div class="news-date">June 5, 2024</div>
+                        <h3>Esports Championship Results</h3>
+                        <p>Recap of the biggest esports tournaments this month and the surprising outcomes that shocked fans.</p>
+                        <a href="#" class="btn btn-secondary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
 
     <!-- Social Media Section -->
-    <section class="social-section">
+    <section class="social-section" id="community">
         <h2 class="section-title">Join Our Community</h2>
         <p>Connect with us on social media for exclusive content, giveaways, and the latest updates.</p>
         
@@ -672,9 +719,52 @@
         </div>
     </section>
     
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>GameHub</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Troubleshooting</a></li>
+                    <li><a href="#">Report Issue</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get the latest gaming news and offers.</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Your email address">
+                    <a href="#" class="btn btn-primary">Subscribe</a>
+                </div>
+            </div>
+        </div>
         
         <div class="copyright">
             <p>&copy; 2024 GameHub. All rights reserved. | <a href="privacy">Privacy Policy</a> | <a href="terms">Terms of Service</a></p>
         </div>
     </footer>
-    
+</body>
+</html>
