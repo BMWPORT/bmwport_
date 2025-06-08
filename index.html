@@ -1,541 +1,541 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameHub - Download Games & Chat</title>
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #1a1a2e;
-            color: #e6e6e6;
-            line-height: 1.6;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: #16213e;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #f05454;
-            text-shadow: 0 0 10px rgba(240, 84, 84, 0.5);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 1.5rem;
-        }
-        
-        nav ul li a {
-            color: #e6e6e6;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-        }
-        
-        nav ul li a:hover {
-            color: #f05454;
-            background-color: rgba(240, 84, 84, 0.1);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameHub - Download Games & Chat</title>
+<style>
+/* Reset and Base Styles */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-        /* Social Media Buttons */
-        .discord-btn {
-            background-color: #5865F2;
-            color: white !important;
-            padding: 0.5rem 1rem !important;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+body {
+background-color: #1a1a2e;
+color: #e6e6e6;
+line-height: 1.6;
+}
 
-        .discord-btn:hover {
-            background-color: #4752C4 !important;
-            color: white !important;
-        }
+/* Header Styles */
+header {
+background-color: #16213e;
+padding: 1rem 2rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+position: sticky;
+top: 0;
+z-index: 100;
+}
 
-        .tiktok-btn {
-            background-color: #000000;
-            color: white !important;
-            padding: 0.5rem 1rem !important;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+.logo {
+font-size: 2rem;
+font-weight: bold;
+color: #f05454;
+text-shadow: 0 0 10px rgba(240, 84, 84, 0.5);
+}
 
-        .tiktok-btn:hover {
-            background-color: #333333 !important;
-            color: white !important;
-        }
+nav ul {
+display: flex;
+list-style: none;
+}
 
-        .tiktok-btn::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.3) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(30deg);
-            transition: all 0.3s;
-            opacity: 0;
-        }
+nav ul li {
+margin-left: 1.5rem;
+}
 
-        .tiktok-btn:hover::before {
-            left: 100%;
-            opacity: 1;
-        }
-        
-        /* Main Content Styles */
-        main {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        section {
-            margin-bottom: 3rem;
-        }
-        
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #f05454;
-            border-bottom: 2px solid #f05454;
-            padding-bottom: 0.5rem;
-        }
-        
-        /* Games Section */
-        .game-categories {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .category-btn {
-            background-color: #0f3460;
-            color: #e6e6e6;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .category-btn:hover {
-            background-color: #f05454;
-        }
-        
-        .category-btn.active {
-            background-color: #f05454;
-            font-weight: bold;
-        }
-        
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .game-card {
-            background-color: #16213e;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-        
-        .game-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .game-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-        
-        .game-card h3 {
-            margin: 1rem 0;
-            padding: 0 1rem;
-        }
-        
-        .game-card h3 a {
-            color: #f8f8f8;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .game-card h3 a:hover {
-            color: #f05454;
-        }
-        
-        .download-btn {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 0.5rem 1.5rem;
-            margin: 1rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .download-btn:hover {
-            background-color: #45a049;
-        }
-        
-        /* Forum Section */
-        .forum-topics {
-            display: grid;
-            gap: 1rem;
-        }
-        
-        .forum-topic {
-            background-color: #16213e;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        
-        .forum-topic:hover {
-            transform: translateX(5px);
-        }
-        
-        .forum-topic-info h3 {
-            color: #f8f8f8;
-            margin-bottom: 0.5rem;
-        }
-        
-        .forum-topic-info p {
-            color: #b8b8b8;
-            font-size: 0.9rem;
-        }
-        
-        .forum-btn {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.7rem 1.5rem;
-            background-color: #f05454;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .forum-btn:hover {
-            background-color: #ff7676;
-        }
-        
-        /* Chat System */
-        .chat-container {
-            position: fixed;
-            bottom: 0;
-            right: 2rem;
-            width: 350px;
-            background-color: #16213e;
-            border-radius: 8px 8px 0 0;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-        
-        .chat-container.chat-collapsed {
-            height: 40px !important;
-        }
-        
-        .chat-container.chat-collapsed .chat-body {
-            display: none;
-        }
-        
-        .chat-header {
-            padding: 0.7rem 1rem;
-            background-color: #f05454;
-            color: white;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            border-radius: 8px 8px 0 0;
-        }
-        
-        .chat-toggle {
-            font-size: 1.2rem;
-        }
-        
-        .chat-body {
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .chat-messages {
-            flex: 1;
-            padding: 1rem;
-            overflow-y: auto;
-            background-color: #0f3460;
-        }
-        
-        .message {
-            margin-bottom: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            max-width: 80%;
-        }
-        
-        .message.user {
-            background-color: #f05454;
-            margin-left: auto;
-        }
-        
-        .message.other {
-            background-color: #1a1a2e;
-            margin-right: auto;
-        }
-        
-        .message-sender {
-            font-weight: bold;
-            font-size: 0.8rem;
-            margin-bottom: 0.2rem;
-        }
-        
-        .message-text {
-            word-wrap: break-word;
-        }
-        
-        .chat-input {
-            display: flex;
-            padding: 0.5rem;
-            background-color: #16213e;
-            border-top: 1px solid #0f3460;
-        }
-        
-        .chat-input input {
-            flex: 1;
-            padding: 0.7rem;
-            border: none;
-            border-radius: 4px;
-            background-color: #0f3460;
-            color: white;
-        }
-        
-        .chat-input input:focus {
-            outline: none;
-            background-color: #1a1a2e;
-        }
-        
-        .chat-input button {
-            margin-left: 0.5rem;
-            padding: 0.7rem 1rem;
-            background-color: #f05454;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .chat-input button:hover {
-            background-color: #ff7676;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                padding: 1rem;
-            }
-            
-            .logo {
-                margin-bottom: 1rem;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 0.5rem;
-            }
-            
-            .chat-container {
-                width: 100%;
-                right: 0;
-                border-radius: 0;
-            }
-        }
+nav ul li a {
+color: #e6e6e6;
+text-decoration: none;
+font-weight: 500;
+transition: all 0.3s;
+padding: 0.5rem 1rem;
+border-radius: 4px;
+}
 
-        /* Social Media Icons */
-        .social-icon {
-            width: 20px;
-            height: 20px;
-            filter: brightness(0) invert(1);
-        }
-    </style>
+nav ul li a:hover {
+color: #f05454;
+background-color: rgba(240, 84, 84, 0.1);
+}
+
+/* Social Media Buttons */
+.discord-btn {
+background-color: #5865F2;
+color: white !important;
+padding: 0.5rem 1rem !important;
+border-radius: 4px;
+transition: background-color 0.3s;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+
+.discord-btn:hover {
+background-color: #4752C4 !important;
+color: white !important;
+}
+
+.tiktok-btn {
+background-color: #000000;
+color: white !important;
+padding: 0.5rem 1rem !important;
+border-radius: 4px;
+transition: background-color 0.3s;
+position: relative;
+overflow: hidden;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+
+.tiktok-btn:hover {
+background-color: #333333 !important;
+color: white !important;
+}
+
+.tiktok-btn::before {
+content: "";
+position: absolute;
+top: -50%;
+left: -60%;
+width: 200%;
+height: 200%;
+background: linear-gradient(
+to right,
+rgba(255, 255, 255, 0) 0%,
+rgba(255, 255, 255, 0.3) 50%,
+rgba(255, 255, 255, 0) 100%
+);
+transform: rotate(30deg);
+transition: all 0.3s;
+opacity: 0;
+}
+
+.tiktok-btn:hover::before {
+left: 100%;
+opacity: 1;
+}
+
+/* Main Content Styles */
+main {
+padding: 2rem;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+section {
+margin-bottom: 3rem;
+}
+
+h2 {
+font-size: 2rem;
+margin-bottom: 1.5rem;
+color: #f05454;
+border-bottom: 2px solid #f05454;
+padding-bottom: 0.5rem;
+}
+
+/* Games Section */
+.game-categories {
+display: flex;
+gap: 1rem;
+margin-bottom: 1.5rem;
+flex-wrap: wrap;
+}
+
+.category-btn {
+background-color: #0f3460;
+color: #e6e6e6;
+border: none;
+padding: 0.5rem 1.5rem;
+border-radius: 20px;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+.category-btn:hover {
+background-color: #f05454;
+}
+
+.category-btn.active {
+background-color: #f05454;
+font-weight: bold;
+}
+
+.games-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+gap: 1.5rem;
+}
+
+.game-card {
+background-color: #16213e;
+border-radius: 8px;
+overflow: hidden;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+transition: transform 0.3s;
+text-align: center;
+}
+
+.game-card:hover {
+transform: translateY(-5px);
+}
+
+.game-card img {
+width: 100%;
+height: 150px;
+object-fit: cover;
+}
+
+.game-card h3 {
+margin: 1rem 0;
+padding: 0 1rem;
+}
+
+.game-card h3 a {
+color: #f8f8f8;
+text-decoration: none;
+transition: color 0.3s;
+}
+
+.game-card h3 a:hover {
+color: #f05454;
+}
+
+.download-btn {
+display: inline-block;
+background-color: #4CAF50;
+color: white;
+padding: 0.5rem 1.5rem;
+margin: 1rem;
+border-radius: 4px;
+text-decoration: none;
+font-weight: bold;
+transition: background-color 0.3s;
+}
+
+.download-btn:hover {
+background-color: #45a049;
+}
+
+/* Forum Section */
+.forum-topics {
+display: grid;
+gap: 1rem;
+}
+
+.forum-topic {
+background-color: #16213e;
+padding: 1.5rem;
+border-radius: 8px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s;
+}
+
+.forum-topic:hover {
+transform: translateX(5px);
+}
+
+.forum-topic-info h3 {
+color: #f8f8f8;
+margin-bottom: 0.5rem;
+}
+
+.forum-topic-info p {
+color: #b8b8b8;
+font-size: 0.9rem;
+}
+
+.forum-btn {
+display: inline-block;
+margin-top: 1.5rem;
+padding: 0.7rem 1.5rem;
+background-color: #f05454;
+color: white;
+text-decoration: none;
+border-radius: 4px;
+font-weight: bold;
+transition: background-color 0.3s;
+}
+
+.forum-btn:hover {
+background-color: #ff7676;
+}
+
+/* Chat System */
+.chat-container {
+position: fixed;
+bottom: 0;
+right: 2rem;
+width: 350px;
+background-color: #16213e;
+border-radius: 8px 8px 0 0;
+box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+transition: all 0.3s;
+z-index: 1000;
+}
+
+.chat-container.chat-collapsed {
+height: 40px !important;
+}
+
+.chat-container.chat-collapsed .chat-body {
+display: none;
+}
+
+.chat-header {
+padding: 0.7rem 1rem;
+background-color: #f05454;
+color: white;
+font-weight: bold;
+display: flex;
+justify-content: space-between;
+align-items: center;
+cursor: pointer;
+border-radius: 8px 8px 0 0;
+}
+
+.chat-toggle {
+font-size: 1.2rem;
+}
+
+.chat-body {
+height: 400px;
+display: flex;
+flex-direction: column;
+}
+
+.chat-messages {
+flex: 1;
+padding: 1rem;
+overflow-y: auto;
+background-color: #0f3460;
+}
+
+.message {
+margin-bottom: 1rem;
+padding: 0.5rem 1rem;
+border-radius: 4px;
+max-width: 80%;
+}
+
+.message.user {
+background-color: #f05454;
+margin-left: auto;
+}
+
+.message.other {
+background-color: #1a1a2e;
+margin-right: auto;
+}
+
+.message-sender {
+font-weight: bold;
+font-size: 0.8rem;
+margin-bottom: 0.2rem;
+}
+
+.message-text {
+word-wrap: break-word;
+}
+
+.chat-input {
+display: flex;
+padding: 0.5rem;
+background-color: #16213e;
+border-top: 1px solid #0f3460;
+}
+
+.chat-input input {
+flex: 1;
+padding: 0.7rem;
+border: none;
+border-radius: 4px;
+background-color: #0f3460;
+color: white;
+}
+
+.chat-input input:focus {
+outline: none;
+background-color: #1a1a2e;
+}
+
+.chat-input button {
+margin-left: 0.5rem;
+padding: 0.7rem 1rem;
+background-color: #f05454;
+color: white;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.chat-input button:hover {
+background-color: #ff7676;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+header {
+flex-direction: column;
+padding: 1rem;
+}
+
+.logo {
+margin-bottom: 1rem;
+}
+
+nav ul {
+flex-wrap: wrap;
+justify-content: center;
+}
+
+nav ul li {
+margin: 0.5rem;
+}
+
+.chat-container {
+width: 100%;
+right: 0;
+border-radius: 0;
+}
+}
+
+/* Social Media Icons */
+.social-icon {
+width: 20px;
+height: 20px;
+filter: brightness(0) invert(1);
+}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <header>
-        <div class="logo">GameHub</div>
-        <nav>
-            <ul>
-                <li><a href="#games">Download Games</a></li>
-                <li><a href="#forum">Forum</a></li>
-                <li><a href="#chat">Chat</a></li>
-                <!-- Add social media buttons -->
-                <li><a href="https://discord.gg/8nAM4vwz" target="_blank" class="discord-btn">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord" class="social-icon">
-                    Discord
-                </a></li>
-                <li><a href="https://www.tiktok.com/@gamehub_4ever" target="_blank" class="tiktok-btn">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" class="social-icon">
-                    TikTok
-                </a></li>
-            </ul>
-        </nav>
-    </header>
+<!-- Navigation -->
+<header>
+<div class="logo">GameHub</div>
+<nav>
+<ul>
+<li><a href="#games">Download Games</a></li>
+<li><a href="#forum">Forum</a></li>
+<li><a href="#chat">Chat</a></li>
+<!-- Add social media buttons -->
+<li><a href="https://discord.gg/8nAM4vwz" target="_blank" class="discord-btn">
+<img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord" class="social-icon">
+Discord
+</a></li>
+<li><a href="https://www.tiktok.com/@gamehub_4ever" target="_blank" class="tiktok-btn">
+<img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" class="social-icon">
+TikTok
+</a></li>
+</ul>
+</nav>
+</header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Games Section -->
-        <section id="games">
-            <h2>Download Games</h2>
-            <div class="game-categories">
-                <button class="category-btn active" data-category="all">All games</button>
-                <button class="category-btn" data-category="action">online games</button>
-                <button class="category-btn" data-category="adventure">singleplayer games</button>
-            </div>
-            <div class="games-grid" id="games-container">
-                <!-- Games will be loaded here via JavaScript -->
-            </div>
-        </section>
+<!-- Main Content -->
+<main>
+<!-- Games Section -->
+<section id="games">
+<h2>Download Games</h2>
+<div class="game-categories">
+<button class="category-btn active" data-category="all">All games</button>
+<button class="category-btn" data-category="action">online games</button>
+<button class="category-btn" data-category="adventure">singleplayer games</button>
+</div>
+<div class="games-grid" id="games-container">
+<!-- Games will be loaded here via JavaScript -->
+</div>
+</section>
 
-        <!-- Forum Section -->
-        <section id="forum">
-            <h2>Gamer Forum</h2>
-            <div class="forum-topics">
-                <div class="forum-topic">
-                    <div class="forum-topic-info">
-                        <h3>Pasword in WinRAR?</h3>
-                        <p>GameHud and gamehud</p>
-                    </div>
-                </div>
-                <div class="forum-topic">
-                    <div class="forum-topic-info">
-                        <h3>Beginner Tips for Elden Ring</h3>
-                        <p>Last reply: yesterday | 128 replies</p>
-                    </div>
-                </div>
-                <div class="forum-topic">
-                    <div class="forum-topic-info">
-                        <h3>Upcoming Game Releases</h3>
-                        <p>Last reply: 3 days ago | 32 replies</p>
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="forum-btn">View All Topics</a>
-        </section>
-    </main>
+<!-- Forum Section -->
+<section id="forum">
+<h2>Gamer Forum</h2>
+<div class="forum-topics">
+<div class="forum-topic">
+<div class="forum-topic-info">
+<h3>Pasword in WinRAR?</h3>
+<p>GameHud and gamehud</p>
+</div>
+</div>
+<div class="forum-topic">
+<div class="forum-topic-info">
+<h3>Beginner Tips for Elden Ring</h3>
+<p>Last reply: yesterday | 128 replies</p>
+</div>
+</div>
+<div class="forum-topic">
+<div class="forum-topic-info">
+<h3>Upcoming Game Releases</h3>
+<p>Last reply: 3 days ago | 32 replies</p>
+</div>
+</div>
+</div>
+<a href="#" class="forum-btn">View All Topics</a>
+</section>
+</main>
 
-    <!-- JavaScript -->
-    <script>
-        // Game Data with download links
-        const gamesData = [
-            {
-                id: 1,
-                title: "Mon Bazou",
-                category: "adventure",
-                image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1520370/capsule_616x353.jpg?t=1730218880",
-                description: "An action game in space with lots of shooting and explosions!",
-                downloadUrl: "https://ouo.io/Afn49i",
-                fileSize: "534.4MB"
-            },
-            {
-                id: 2,
-                title: "Internet Cefe Simulator",
-                category: "adventure",
-                image: "https://gaming-cdn.com/images/products/10219/616x353/internet-cafe-simulator-2-pc-game-steam-cover.jpg?v=1737112376",
-                description: "Build, customize, and protect your internet café in a chaotic world of customers, upgrades, and shady decisions.",
-                downloadUrl: "https://ouo.io/GKHSZ2",
-                fileSize: "2.7GB"
-            },
-            {
-                id: 3,
-                title: "Metro 2033 Redux",
-                category: "Kill zombies and survive the apocalypse.",
-                image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/286690/header.jpg?t=1741110084",
-                description: "Kill zombies and survive the apocalypse.",
-                downloadUrl: "https://ouo.io/49teQ8",
-                fileSize: "6.1GB"
-            },
-            {
-                id: 4,
-                title: "Scedule |",
-                category: "adventure",
-                image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3164500/header.jpg?t=1748368581",
-                description: "Solve magical puzzles and unlock ancient mechanisms.",
-                downloadUrl: "https://ouo.io/33ND9hJ",
-                fileSize: "1.8GB"
-            },
-            {
-                id: 5,
-                title: "My summer car",
-                category: "adventure",
-                image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/516750/header.jpg?t=1736372299",
-                description: "Repair your car with love and beer.",
-                downloadUrl: "https://ouo.io/Po6amK",
-                fileSize: "350.5MB"
-            },
-            {
-                id: 6,
-                title: "DeltaRune",
-                category: "action",
-                image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1671210/7ccda5b1631d2e60cc756a3271e845dbb9168821/header.jpg?t=1749252480",
-                description: "2D pixel game.",
-                downloadUrl: "https://ouo.io/pRxMdG",
-                fileSize: "384.0MB"
-            }
+<!-- JavaScript -->
+<script>
+// Game Data with download links
+const gamesData = [
+{
+id: 1,
+title: "Mon Bazou",
+category: "adventure",
+image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1520370/capsule_616x353.jpg?t=1730218880",
+description: "An action game in space with lots of shooting and explosions!",
+downloadUrl: "https://ouo.io/Afn49i",
+fileSize: "534.4MB"
+},
+{
+id: 2,
+title: "Internet Cefe Simulator",
+category: "adventure",
+image: "https://gaming-cdn.com/images/products/10219/616x353/internet-cafe-simulator-2-pc-game-steam-cover.jpg?v=1737112376",
+description: "Build, customize, and protect your internet café in a chaotic world of customers, upgrades, and shady decisions.",
+downloadUrl: "https://ouo.io/GKHSZ2",
+fileSize: "2.7GB"
+},
+{
+id: 3,
+title: "Metro 2033 Redux",
+category: "Kill zombies and survive the apocalypse.",
+image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/286690/header.jpg?t=1741110084",
+description: "Kill zombies and survive the apocalypse.",
+downloadUrl: "https://ouo.io/49teQ8",
+fileSize: "6.1GB"
+},
+{
+id: 4,
+title: "Scedule |",
+category: "adventure",
+image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3164500/header.jpg?t=1748368581",
+description: "Solve magical puzzles and unlock ancient mechanisms.",
+downloadUrl: "https://ouo.io/33ND9hJ",
+fileSize: "1.8GB"
+},
+{
+id: 5,
+title: "My summer car",
+category: "adventure",
+image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/516750/header.jpg?t=1736372299",
+description: "Repair your car with love and beer.",
+downloadUrl: "https://ouo.io/Po6amK",
+fileSize: "350.5MB"
+},
+{
+id: 6,
+title: "DeltaRune",
+category: "action",
+image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1671210/7ccda5b1631d2e60cc756a3271e845dbb9168821/header.jpg?t=1749252480",
+description: "2D pixel game.",
+downloadUrl: "https://ouo.io/pRxMdG",
+fileSize: "384.0MB"
+}
              {
                 id: 7,
                 title: "flapiburd",
@@ -545,191 +545,486 @@
                 downloadUrl: "https://www.pornhub.com/",
                 fileSize: "384.0MB"
             }
-        ];
+];
 
-        // Sample chat messages
-        const sampleMessages = [
-         { sender: "GAME BOT", text: "Check discord, everything is writen there", type: "other", type: "other" },
-        ];
+// Sample chat messages
+const sampleMessages = [
+{ sender: "GAME BOT", text: "Check discord, everything is writen there", type: "other", type: "other" },
+];
 
-        // DOM Elements
-        const gamesContainer = document.getElementById('games-container');
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        const chatContainer = document.getElementById('chat-container');
-        const chatHeader = document.getElementById('chat-header');
-        const chatToggle = document.getElementById('chat-toggle');
-        const chatBody = document.getElementById('chat-body');
-        const chatMessages = document.getElementById('chat-messages');
-        const chatInput = document.getElementById('chat-input');
-        const chatSend = document.getElementById('chat-send');
+// DOM Elements
+const gamesContainer = document.getElementById('games-container');
+const categoryButtons = document.querySelectorAll('.category-btn');
+const chatContainer = document.getElementById('chat-container');
+const chatHeader = document.getElementById('chat-header');
+const chatToggle = document.getElementById('chat-toggle');
+const chatBody = document.getElementById('chat-body');
+const chatMessages = document.getElementById('chat-messages');
+const chatInput = document.getElementById('chat-input');
+const chatSend = document.getElementById('chat-send');
 
-        // Forum topic click functionality
-        const forumTopics = document.querySelectorAll('.forum-topic');
+// Forum topic click functionality
+const forumTopics = document.querySelectorAll('.forum-topic');
 
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', function() {
-            displayGames(gamesData);
-            setupCategoryFilters();
-            setupChat();
-            loadSampleMessages();
-            setupForumTopics();
-        });
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+displayGames(gamesData);
+setupCategoryFilters();
+setupChat();
+loadSampleMessages();
+setupForumTopics();
+});
 
-        // Display games in the games section
-        function displayGames(games) {
-            gamesContainer.innerHTML = '';
-            games.forEach(game => {
-                const gameCard = document.createElement('div');
-                gameCard.className = 'game-card';
-                gameCard.innerHTML = `
-                    <img src="${game.image}" alt="${game.title}">
-                    <h3><a href="${game.downloadUrl}" title="Download ${game.title}">${game.title}</a></h3>
-                    <p class="game-description">${game.description}</p>
-                    <p class="file-size">File size: ${game.fileSize}</p>
-                    <a href="${game.downloadUrl}" class="download-btn" data-id="${game.id}">Download</a>
-                `;
-                gamesContainer.appendChild(gameCard);
-            });
+// Display games in the games section
+function displayGames(games) {
+gamesContainer.innerHTML = '';
+games.forEach(game => {
+const gameCard = document.createElement('div');
+gameCard.className = 'game-card';
+gameCard.innerHTML = `
+                   <img src="${game.image}" alt="${game.title}">
+                   <h3><a href="${game.downloadUrl}" title="Download ${game.title}">${game.title}</a></h3>
+                   <p class="game-description">${game.description}</p>
+                   <p class="file-size">File size: ${game.fileSize}</p>
+                   <a href="${game.downloadUrl}" class="download-btn" data-id="${game.id}">Download</a>
+               `;
+gamesContainer.appendChild(gameCard);
+});
 
-            // Add event listeners to download buttons
-            document.querySelectorAll('.download-btn').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const gameId = parseInt(this.getAttribute('data-id'));
-                    const game = gamesData.find(g => g.id === gameId);
-                    if (game) {
-                        showDownloadModal(game);
-                    }
-                });
-            });
-        }
+// Add event listeners to download buttons
+document.querySelectorAll('.download-btn').forEach(button => {
+button.addEventListener('click', function(e) {
+e.preventDefault();
+const gameId = parseInt(this.getAttribute('data-id'));
+const game = gamesData.find(g => g.id === gameId);
+if (game) {
+showDownloadModal(game);
+}
+});
+});
+}
 
-        // Filter games by category
-        function setupCategoryFilters() {
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Update active button
-                    categoryButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
+// Filter games by category
+function setupCategoryFilters() {
+categoryButtons.forEach(button => {
+button.addEventListener('click', function() {
+// Update active button
+categoryButtons.forEach(btn => btn.classList.remove('active'));
+this.classList.add('active');
 
-                    const category = this.getAttribute('data-category');
-                    let filteredGames;
-                    
-                    if (category === 'all') {
-                        filteredGames = gamesData;
-                    } else {
-                        filteredGames = gamesData.filter(game => game.category === category);
-                    }
-                    
-                    displayGames(filteredGames);
-                });
-            });
-        }
+const category = this.getAttribute('data-category');
+let filteredGames;
 
-        // Setup chat functionality
-        function setupChat() {
-            // Toggle chat collapse/expand
-            chatHeader.addEventListener('click', function() {
-                chatContainer.classList.toggle('chat-collapsed');
-                chatToggle.textContent = chatContainer.classList.contains('chat-collapsed') ? '▼' : '▲';
-            });
+if (category === 'all') {
+filteredGames = gamesData;
+} else {
+filteredGames = gamesData.filter(game => game.category === category);
+}
 
-            // Send message on button click
-            chatSend.addEventListener('click', sendMessage);
+displayGames(filteredGames);
+});
+});
+}
 
-            // Send message on Enter key
-            chatInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
-            });
-        }
+// Setup chat functionality
+function setupChat() {
+// Toggle chat collapse/expand
+chatHeader.addEventListener('click', function() {
+chatContainer.classList.toggle('chat-collapsed');
+chatToggle.textContent = chatContainer.classList.contains('chat-collapsed') ? '▼' : '▲';
+});
 
-        // Load sample chat messages
-        function loadSampleMessages() {
-            sampleMessages.forEach(message => {
-                addMessage(message.sender, message.text, message.type);
-            });
-        }
+// Send message on button click
+chatSend.addEventListener('click', sendMessage);
 
-        // Add a message to the chat
-        function addMessage(sender, text, type) {
-            const messageElement = document.createElement('div');
-            messageElement.className = `message ${type}`;
-            messageElement.innerHTML = `
-                <div class="message-sender">${sender}</div>
-                <div class="message-text">${text}</div>
-            `;
-            chatMessages.appendChild(messageElement);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+// Send message on Enter key
+chatInput.addEventListener('keypress', function(e) {
+if (e.key === 'Enter') {
+sendMessage();
+}
+});
+}
 
-        // Send a chat message
-        function sendMessage() {
-            const messageText = chatInput.value.trim();
-            if (messageText) {
-                addMessage("You", messageText, "user");
-                chatInput.value = '';
-                
-                // Simulate a response after a short delay
-                setTimeout(() => {
-                    const responses = [
-                        "That's interesting!",
-                        "I haven't played that one yet.",
-                        "Nice! What platform are you playing on?",
-                        "I'm more into puzzle games myself.",
-                        "Have you checked out the new releases?"
-                    ];
-                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                    addMessage("GameBot", randomResponse, "other");
-                }, 1000 + Math.random() * 2000);
-            }
-        }
+// Load sample chat messages
+function loadSampleMessages() {
+sampleMessages.forEach(message => {
+addMessage(message.sender, message.text, message.type);
+});
+}
 
-        // Setup forum topic functionality
-        function setupForumTopics() {
-            forumTopics.forEach(topic => {
-                topic.addEventListener('click', function() {
-                    const topicTitle = this.querySelector('h3').textContent;
-                    alert(`Viewing topic: ${topicTitle}\nThis would open the forum thread in a real implementation.`);
-                });
-            });
-        }
+// Add a message to the chat
+function addMessage(sender, text, type) {
+const messageElement = document.createElement('div');
+messageElement.className = `message ${type}`;
+messageElement.innerHTML = `
+               <div class="message-sender">${sender}</div>
+               <div class="message-text">${text}</div>
+           `;
+chatMessages.appendChild(messageElement);
+chatMessages.scrollTop = chatMessages.scrollHeight;
+}
 
-        // Show download modal
-        function showDownloadModal(game) {
-            // Create modal
-            const modal = document.createElement('div');
-            modal.style.position = 'fixed';
-            modal.style.top = '0';
-            modal.style.left = '0';
-            modal.style.width = '100%';
-            modal.style.height = '100%';
-            modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
-            modal.style.display = 'flex';
-            modal.style.justifyContent = 'center';
-            modal.style.alignItems = 'center';
-            modal.style.zIndex = '2000';
-            
-            modal.innerHTML = `
-                <div style="background: #16213e; padding: 2rem; border-radius: 8px; max-width: 500px; text-align: center;">
-                    <h2 style="color: #f05454; margin-bottom: 1rem;">Download ${game.title}</h2>
-                    <p style="margin-bottom: 0.5rem;">${game.description}</p>
-                    <p style="margin-bottom: 1.5rem;"><strong>File size:</strong> ${game.fileSize}</p>
-                    <div style="display: flex; justify-content: center; gap: 1rem;">
-                        <a href="${game.downloadUrl}" id="confirm-download-btn" style="padding: 0.7rem 1.5rem; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none;">Confirm Download</a>
-                        <button id="close-modal-btn" style="padding: 0.7rem 1.5rem; background: #0f3460; color: white; border: none; border-radius: 4px; cursor: pointer;">Cancel</button>
-                    </div>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            // Add event listener to close button
-            modal.querySelector('#close-modal-btn').addEventListener('click', function() {
-                document.body.removeChild(modal);
-            });
-        }
-    </script>
+// Send a chat message
+function sendMessage() {
+const messageText = chatInput.value.trim();
+if (messageText) {
+addMessage("You", messageText, "user");
+chatInput.value = '';
+
+// Simulate a response after a short delay
+setTimeout(() => {
+const responses = [
+"That's interesting!",
+"I haven't played that one yet.",
+"Nice! What platform are you playing on?",
+"I'm more into puzzle games myself.",
+"Have you checked out the new releases?"
+];
+const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+addMessage("GameBot", randomResponse, "other");
+}, 1000 + Math.random() * 2000);
+}
+}
+
+// Setup forum topic functionality
+function setupForumTopics() {
+forumTopics.forEach(topic => {
+topic.addEventListener('click', function() {
+const topicTitle = this.querySelector('h3').textContent;
+alert(`Viewing topic: ${topicTitle}\nThis would open the forum thread in a real implementation.`);
+});
+});
+}
+
+// Show download modal
+function showDownloadModal(game) {
+// Create modal
+const modal = document.createElement('div');
+modal.style.position = 'fixed';
+modal.style.top = '0';
+modal.style.left = '0';
+modal.style.width = '100%';
+modal.style.height = '100%';
+modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+modal.style.display = 'flex';
+modal.style.justifyContent = 'center';
+modal.style.alignItems = 'center';
+modal.style.zIndex = '2000';
+
+modal.innerHTML = `
+               <div style="background: #16213e; padding: 2rem; border-radius: 8px; max-width: 500px; text-align: center;">
+                   <h2 style="color: #f05454; margin-bottom: 1rem;">Download ${game.title}</h2>
+                   <p style="margin-bottom: 0.5rem;">${game.description}</p>
+                   <p style="margin-bottom: 1.5rem;"><strong>File size:</strong> ${game.fileSize}</p>
+                   <div style="display: flex; justify-content: center; gap: 1rem;">
+                       <a href="${game.downloadUrl}" id="confirm-download-btn" style="padding: 0.7rem 1.5rem; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none;">Confirm Download</a>
+                       <button id="close-modal-btn" style="padding: 0.7rem 1.5rem; background: #0f3460; color: white; border: none; border-radius: 4px; cursor: pointer;">Cancel</button>
+                   </div>
+               </div>
+           `;
+
+document.body.appendChild(modal);
+
+// Add event listener to close button
+modal.querySelector('#close-modal-btn').addEventListener('click', function() {
+document.body.removeChild(modal);
+});
+}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MiniChat</title>
+<style>
+:root {
+--primary: #6e48aa;
+--secondary: #9d50bb;
+--bg: #f8f9fa;
+--card-bg: #ffffff;
+--text: #333333;
+--text-light: #666666;
+--border: #e0e0e0;
+--shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+background-color: var(--bg);
+color: var(--text);
+line-height: 1.5;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+padding: 16px;
+}
+
+.chat-container {
+width: 100%;
+max-width: 400px;
+height: 500px;
+background-color: var(--card-bg);
+border-radius: 12px;
+box-shadow: var(--shadow);
+overflow: hidden;
+display: flex;
+flex-direction: column;
+}
+
+.chat-header {
+padding: 16px;
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+color: white;
+font-weight: 600;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.chat-header .logo {
+width: 24px;
+height: 24px;
+background-color: white;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--primary);
+font-weight: bold;
+}
+
+.chat-messages {
+flex: 1;
+padding: 16px;
+overflow-y: auto;
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.message {
+max-width: 80%;
+padding: 10px 14px;
+border-radius: 18px;
+font-size: 14px;
+line-height: 1.4;
+}
+
+.user-message {
+align-self: flex-end;
+background-color: var(--primary);
+color: white;
+border-bottom-right-radius: 4px;
+}
+
+.bot-message {
+align-self: flex-start;
+background-color: var(--border);
+color: var(--text);
+border-bottom-left-radius: 4px;
+}
+
+.chat-input-container {
+padding: 12px 16px;
+border-top: 1px solid var(--border);
+display: flex;
+gap: 8px;
+}
+
+.chat-input {
+flex: 1;
+padding: 10px 14px;
+border: 1px solid var(--border);
+border-radius: 20px;
+outline: none;
+font-size: 14px;
+transition: border 0.2s;
+}
+
+.chat-input:focus {
+border-color: var(--primary);
+}
+
+.send-button {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+color: white;
+border: none;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: transform 0.2s;
+}
+
+.send-button:hover {
+transform: scale(1.05);
+}
+
+.typing-indicator {
+display: flex;
+gap: 4px;
+padding: 10px 14px;
+background-color: var(--border);
+border-radius: 18px;
+align-self: flex-start;
+margin-bottom: 4px;
+}
+
+.typing-dot {
+width: 8px;
+height: 8px;
+background-color: var(--text-light);
+border-radius: 50%;
+animation: typingAnimation 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingAnimation {
+0%, 60%, 100% { transform: translateY(0); }
+30% { transform: translateY(-4px); }
+}
+
+.timestamp {
+font-size: 11px;
+color: var(--text-light);
+margin-top: 4px;
+text-align: right;
+}
+</style>
+</head>
+<body>
+<div class="chat-container">
+<div class="chat-header">
+<div class="logo">M</div>
+<span>MiniChat</span>
+</div>
+
+<div class="chat-messages" id="chat-messages">
+<div class="message bot-message">
+Hello! I'm MiniChat, your compact AI assistant. How can I help you today?
+<div class="timestamp">Just now</div>
+</div>
+</div>
+
+<div class="chat-input-container">
+<input type="text" class="chat-input" id="user-input" placeholder="Type a message..." autofocus>
+<button class="send-button" id="send-button">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</button>
+</div>
+</div>
+
+<script>
+const chatMessages = document.getElementById('chat-messages');
+const userInput = document.getElementById('user-input');
+const sendButton = document.getElementById('send-button');
+
+function addMessage(text, isUser) {
+const messageDiv = document.createElement('div');
+messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+messageDiv.innerHTML = text;
+
+const timestamp = document.createElement('div');
+timestamp.className = 'timestamp';
+timestamp.textContent = formatTimestamp();
+messageDiv.appendChild(timestamp);
+
+chatMessages.appendChild(messageDiv);
+chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function showTypingIndicator() {
+const typingDiv = document.createElement('div');
+typingDiv.className = 'typing-indicator';
+typingDiv.id = 'typing-indicator';
+
+for (let i = 0; i < 3; i++) {
+const dot = document.createElement('div');
+dot.className = 'typing-dot';
+typingDiv.appendChild(dot);
+}
+
+chatMessages.appendChild(typingDiv);
+chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function hideTypingIndicator() {
+const typingIndicator = document.getElementById('typing-indicator');
+if (typingIndicator) {
+typingIndicator.remove();
+}
+}
+
+function formatTimestamp() {
+const now = new Date();
+return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+function getBotResponse(userMessage) {
+// Simple response logic - replace with actual AI integration
+const responses = [
+"I'm a compact AI designed to help with quick questions!",
+"Interesting point. Could you tell me more about that?",
+"I've made a note of that. What else can I assist with?",
+"Thanks for sharing! How can I help you further?",
+"Let me think about that... What specifically would you like to know?"
+];
+
+// Simple keyword matching
+if (userMessage.toLowerCase().includes('hello') || userMessage.toLowerCase().includes('hi')) {
+return "Hi there! How's your day going?";
+} else if (userMessage.toLowerCase().includes('help')) {
+return "I can answer questions, provide suggestions, or just chat! What do you need?";
+} else if (userMessage.toLowerCase().includes('thank')) {
+return "You're welcome! Is there anything else I can do for you?";
+}
+
+return responses[Math.floor(Math.random() * responses.length)];
+}
+
+function handleSend() {
+const message = userInput.value.trim();
+if (message) {
+addMessage(message, true);
+userInput.value = '';
+
+showTypingIndicator();
+
+// Simulate AI thinking time
+setTimeout(() => {
+hideTypingIndicator();
+const botResponse = getBotResponse(message);
+addMessage(botResponse, false);
+}, 1000 + Math.random() * 2000);
+}
+}
+
+sendButton.addEventListener('click', handleSend);
+
+userInput.addEventListener('keypress', (e) => {
+if (e.key === 'Enter') {
+handleSend();
+}
+});
+</script>
 </body>
 </html>
